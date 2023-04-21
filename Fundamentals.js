@@ -119,22 +119,38 @@ const inigo = {
 /*Number 7*/
 const basketballGame = {
     score: 0,
+    fouls:0,
     freeThrow() {
     this.score++;
+    return basketballGame;
     },
     basket() {
     this.score += 2;
+    return basketballGame;
     },
     threePointer() {
     this.score += 3;
+    return basketballGame;
     },
     halfTime() {
-    console.log('Halftime score is '+this.score);
+    console.log('Halftime score is '+this.score + "   Fouls Count: " + this.fouls);
+    },
+    finalScore(){
+        console.log("Final Score: " + this.score + "   Fouls Count: " + this.fouls);
+    },
+    foulCount(){
+        this.score-=1;
+        this.fouls++;
+        return basketballGame;
     }
+    
     }
+    
+    // console.log(basketballGame.basket().freeThrow().score);
 
 //modify each of the above object methods to enable function chaining as below:
-// basketballGame.basket().freeThrow().freeThrow().basket().threePointer().halfTime();
+basketballGame.basket().freeThrow().freeThrow().basket().threePointer().foulCount().halfTime();
+basketballGame.finalScore();
 
 /*Number 8*/
 const sydney = {
@@ -173,7 +189,39 @@ dog_2="Game";
 let cat2=cat1;
 cat2.name="Not Fluffy";
 
-console.log(moreSports, teamSports);
-console.log(dog_2,dog1)
+// console.log(moreSports, teamSports);
+// console.log(dog_2,dog1)
 
-/**/ 
+/*Number 10*/
+function Person(name, age) {
+    this.name = name,
+    this.age = age,
+    this.human = true,
+    this.canDrive = function(){
+        return this.age >= 18;
+    }
+
+
+    
+}
+
+const person_1 = new Person("Devin", 15);
+const person_2 = new Person("Ray", 31);
+
+// console.log(person_1.canDrive());
+
+class PersonClass{
+    constructor(name, age){
+        this.name=name;
+        this.age=age;
+        this.human=true;
+    }
+
+    canDrive(){
+        return this.age >= 18;
+    }
+
+}
+
+const person3 = new PersonClass("Ray Christian", 14);
+// console.log(person3.canDrive());
