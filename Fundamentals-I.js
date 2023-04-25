@@ -228,7 +228,10 @@ function latestBook(){
     return books.find(i=>i.year == myyear);
 }
 
-console.log(latestBook());
+console.log(latestBook()); //Not sure if you want recent publication(title and year)
+
+/*8*/
+
 
 
 
