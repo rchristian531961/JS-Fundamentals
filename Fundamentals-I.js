@@ -253,11 +253,13 @@ function printPhoneBook(contacts){
 printPhoneBook(phoneBookABC);
 
 function phonebookMerge(phone1,phone2){
-    const phonebook=new Map();
+    const phonebook=new Map([...phone1, ...phone2]);
+    return phonebook;
       
 }
+
+console.log(phonebookMerge(phoneBookABC,phoneBookDEF));
 // console.log(phonebook);
-console.log(...phoneBookABC);
 
 
 
