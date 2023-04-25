@@ -212,6 +212,24 @@ function addGenre(){
 console.log(addGenre());
 
 
+function getTitles(initials){
+    let currBooks=books.map(e=>e.author);
+    return currBooks.filter(i=>i[0]===initials);
+}
+
+console.log(getTitles("F"));
+
+function latestBook(){
+    //Uses find and for each for latest book
+    let current=[];
+    books.forEach(e=>current.push(e.year));
+    let myyear=Math.max(...current);
+    
+    return books.find(i=>i.year == myyear);
+}
+
+console.log(latestBook());
+
 
 
 
