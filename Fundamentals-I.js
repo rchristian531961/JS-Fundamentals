@@ -231,6 +231,33 @@ function latestBook(){
 console.log(latestBook()); //Not sure if you want recent publication(title and year)
 
 /*8*/
+const phoneBookABC = new Map() //an empty map to begin with
+phoneBookABC.set('Annabelle', '0412312343')
+phoneBookABC.set('Barry', '0433221117')
+phoneBookABC.set('Caroline', '0455221182')
+
+const phoneBookDEF = new Map();
+phoneBookDEF.set("Darral", "3375804026");
+phoneBookDEF.set("Euler", "3182946187");
+phoneBookDEF.set("Far", "3371256789");
+
+phoneBookABC.set("Caroline","updatedNumber");
+console.log(phoneBookABC);
+
+function printPhoneBook(contacts){
+    for (const x of phoneBookABC.entries()){
+        console.log(x[0] + ": " + x[1]);
+    }
+}
+
+printPhoneBook(phoneBookABC);
+
+function phonebookMerge(phone1,phone2){
+    const phonebook=new Map();
+      
+}
+// console.log(phonebook);
+console.log(...phoneBookABC);
 
 
 
