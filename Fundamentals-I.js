@@ -192,5 +192,27 @@ function getBookTitle(bookId){
 
 console.log(getBookTitle(1));
 
+function getOldBooks(){
+    return books.filter(e=> e.year < 1950);
+}
+
+console.log(getOldBooks());
+console.log("break");
+
+function addGenre(){
+    return books.map(e=>{
+        let container=e;
+
+        container.genre="classics";
+
+        return container;
+    });
+}
+
+console.log(addGenre());
+
+
+
+
 
 
