@@ -300,8 +300,32 @@ function topEarner(sal){
     return current[0] + " " + current[1];
 }
 
-
 console.log(topEarner(salaries));
 
 /*10*/
+const today = new Date();
+console.log('Current time is ' + today.toLocaleTimeString());
+console.log(today.getHours() + ' hours have passed so far today');
+console.log(today.getHours() * 60);
+console.log(today.getHours()*60*60);
 
+function displayBDate(){
+    let myAge=today.getFullYear()-1992;
+    let myMonths=myAge * 12;
+    let myDays=myAge * 365;
+
+    console.log("I am " + myAge + " years, " + myMonths + " months and " + myDays + " days old");
+}
+
+displayBDate();
+
+const daysInBetween = (date1,date2)=>{
+    let diff=date1.getTime()-date2.getTime();
+    if (diff < 0){
+        diff*=-1
+    }
+    let totalDays=Math.ceil(diff/(1000*3600*24));
+    return totalDays;
+}
+
+console.log(daysInBetween(new Date("02/18/1992"), new Date()));
