@@ -250,7 +250,7 @@ function printPhoneBook(contacts){
     }
 }
 
-printPhoneBook(phoneBookABC);
+// printPhoneBook(phoneBookABC);
 
 function phonebookMerge(phone1,phone2){
     const phonebook=new Map([...phone1, ...phone2]);
@@ -258,11 +258,50 @@ function phonebookMerge(phone1,phone2){
       
 }
 
-console.log(phonebookMerge(phoneBookABC,phoneBookDEF));
-// console.log(phonebook);
+// console.log(phonebookMerge(phoneBookABC,phoneBookDEF));
+
+function display(phone1,phone2){
+    let myphonebook = phonebookMerge(phone1,phone2);
+    
+    for (let x of myphonebook.keys()){
+        console.log(x);
+    }
+}
+
+// display(phoneBookABC,phoneBookDEF);
+
+/*9*/
+let salaries = {
+    "Timothy" : 35000,
+    "David" : 25000,
+    "Mary" : 55000,
+    "Christina" : 75000,
+    "James" : 43000
+    };
+
+function sumSalaries(sal){
+    let total=0;
+    for (const i of Object.values(sal)){
+        total+=i;
+    }
+    return total;
+}
+
+console.log(sumSalaries(salaries));
+
+function topEarner(sal){
+    let employees=Object.entries(sal);
+    let current=employees[0];
+    for (let i=1; i<employees.length;i++){
+        if(current[1] < employees[i][1]){
+            current=employees[i];
+        }
+    }
+    return current[0] + " " + current[1];
+}
 
 
+console.log(topEarner(salaries));
 
-
-
+/*10*/
 
