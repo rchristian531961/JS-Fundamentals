@@ -47,8 +47,41 @@ clearTimeout(cancelTimer);
 
 
 /*4*/
+let printFibonacci=()=>{
+    let fibonaci_1=0;
+    let fibonaci_2=1;
 
+    setInterval(()=>{
+        let current= fibonaci_1+fibonaci_2;
+        console.log(current);
+        fibonaci_1=fibonaci_2;
+        fibonaci_2=current;
+        
+    },1000);
+}
 
+// printFibonacci();
+
+let printFibonacciTimeouts=()=>{
+    let fibonaci_1=0;
+    let fibonaci_2=1;
+
+   let myTime=()=>{setTimeout(printAgain=()=>{
+        let current= fibonaci_1+fibonaci_2;
+        console.log(current);
+        fibonaci_1=fibonaci_2;
+        fibonaci_2=current;
+
+        myTime();
+        
+    },1000);}
+
+    myTime();
+
+    
+}
+//Need to verify speed? 
+printFibonacciTimeouts();
 
 /*5*/
 
