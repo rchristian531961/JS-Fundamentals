@@ -11,9 +11,9 @@ function makeCounter() {
 let counter1 = makeCounter();
 let counter2=makeCounter();
 
-counter1(); // 1
-counter1(); // 2
-counter2(); //They are independent
+// counter1(); // 1
+// counter1(); // 2
+// counter2(); //They are independent
 
 function makeCounter_bc(startFrom,incrementBy){
     let currentCount = startFrom;
@@ -77,13 +77,48 @@ let printFibonacciTimeouts=()=>{
     },1000);}
 
     myTime();
-
     
 }
-//Need to verify speed? 
-printFibonacciTimeouts();
+// printFibonacciTimeouts();
+
+
+let printFibonacci_3=(limit)=>{
+     let fibonaci_1=0;
+     let fibonaci_2=1;
+    //  let count=limit;
+
+    let fib = setInterval(()=>{
+         let current= fibonaci_1+fibonaci_2;
+         console.log(current);
+         fibonaci_1=fibonaci_2;
+         fibonaci_2=current;
+         limit--;
+
+         if (limit == 0){
+            clearInterval(fib);
+         }
+        
+     },1000);
+
+     fib;
+ }
+
+// printFibonacci_3(5);
 
 /*5*/
+let car = {
+    make: "Porsche",
+    model: '911',
+    year: 1964,
+    description() {
+    console.log(`This car is a ${this.make} ${this.model} from ${this.year}`);
+    }
+    };
+
+car.description(); //works    
+setTimeout(()=>{car.description}, 200); 
+//fails. due to local variables only established in car. 
+
 
 
 
