@@ -38,12 +38,30 @@ console.log(`This message will be printed after a delay: ${msg}`)
 
 let myDelayMsg=(msg)=>console.log(`my message delay: ${msg}`);
 
-setTimeout(myDelayMsg, 200, "200");
-let cancelTimer=setTimeout(myDelayMsg, 15000, "15000")
-clearTimeout(cancelTimer);
+// setTimeout(myDelayMsg, 200, "200");
+// let cancelTimer=setTimeout(myDelayMsg, 15000, "15000")
+// clearTimeout(cancelTimer);
 
 /*3*/
+function printMe(){console.log("printing debounced message");}
 
+function debounce(func, time=1000){
+
+    let timeOut;
+
+    return ()=>{
+
+        clearTimeout(timeOut);
+         
+        timeOut=setTimeout(()=>{console.log("printing debounced message")},time);
+    }
+}
+
+// printMe = debounce(printMe);
+
+// setTimeout(printMe,100);
+// setTimeout(printMe,200);
+// setTimeout(printMe,300);
 
 
 /*4*/
@@ -115,25 +133,92 @@ let car = {
     }
     };
 
-car.description(); //works    
-setTimeout(()=>{car.description}, 200); 
+// car.description(); //works    
+// setTimeout(()=>{car.description}, 200); 
 //fails. due to local variables only established in car. 
 
+//b
+let car_2={...car, year:2000}
+// console.log(car_2);
+//cUsed the original because new variable was assigned 
+
+//c
+// setTimeout(car.description.bind(car_2), 200); 
 
 
+/*6*/ //Constructor function and call attempt(think like a class)
+function multiply(a,b,c,d){
+    console.log(a*b*c*d);
+}
 
-/*6*/
+//Function.prototype.delay=function(){}
+Function.prototype.delay=function(ms){
+    let original=this;//refers to previous object called
 
+    return function (arg1, arg2, arg3, arg4){
+        setTimeout(()=>{original.apply(null,[arg1, arg2, arg3, arg4])},ms);
+        // console.log(`Pausing for ${ms}`);
+    }
+}
 
-
+// multiply.delay(500)(5,5,5,5);
 
 /*7*/
+function person(name,age,gender){
+    this.name=name;
+    this.age=age;
+    this.gender=gender;
+}
+
+person.prototype.toString=function personToString(){
+    return `name:${this.name} , age:${this.age}, gender:${this.gender}`
+}
+
+let myperson=new person("Ray", 31, "Male");
+// console.log(myperson.toString());
+
+let myperson2=new person("Batman", 'unknown', "male");
+// console.log(myperson2.toString());
 
 
+function Student(name, age, gender, cohort){
+    person.call(this, name, age, gender);
+    this.cohort=cohort;
+}
 
+Student.prototype.toString=function studentToString(){
+    return `name:${this.name} , age:${this.age}, gender:${this.gender}, cohort: ${this.cohort}`
+}
+
+let myStudent=new Student("Ray", "18", "Male", "Anime");
+// console.log(myStudent.toString());
 
 /*8*/
-
+class DigitalClock {
+    constructor(prefix) {
+    this.prefix = prefix;
+    }
+    display() {
+    let date = new Date();
+    //create 3 variables in one go using array destructuring
+    let [hours, mins, secs] = [date.getHours(), date.getMinutes(),
+    date.getSeconds()];
+    if (hours < 10) hours = '0' + hours;
+    if (mins < 10) mins = '0' + mins;
+    if (secs < 10) secs = '0' + secs;
+    console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+    }
+    stop() {
+    clearInterval(this.timer);
+    }
+    start() {
+    this.display();
+    this.timer = setInterval(() => this.display(), 1000);
+    }
+    }
+    const myClock = new DigitalClock('my clock:')
+    myClock.start()
+    
 
 
 
