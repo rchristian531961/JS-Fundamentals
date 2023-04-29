@@ -216,10 +216,65 @@ class DigitalClock {
     this.timer = setInterval(() => this.display(), 1000);
     }
     }
-    const myClock = new DigitalClock('my clock:')
-    myClock.start()
+
+// const myClock = new DigitalClock('my clock:')
+// myClock.start()
+
+class PrecisionClock extends DigitalClock{
+    constructor(prefix,precision=1){
+        super(prefix);
+        this.precision=precision;
+    }
+}
+
+const myPclock=new PrecisionClock("my clock: ", 2000);
+// myPclock.start();
+
+class AlarmClock extends DigitalClock{
+    constructor(prefix,wakeupTime="07:00"){
+        super(prefix);
+        this.wakeupTime=wakeupTime;
+    }
+
+    display(){
+    let date = new Date();
+    //create 3 variables in one go using array destructuring
+    let [hours, mins, secs] = [date.getHours(), date.getMinutes(),
+    date.getSeconds()];
+    if (hours < 10) hours = '0' + hours;
+    if (mins < 10) mins = '0' + mins;
+    if (secs < 10) secs = '0' + secs;
+    console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+    
+    if(this.time_convert(hours,mins) || secs=="09"){
+        this.stop();
+    }
+    }
     
 
+    start(){
+        this.display();
+        this.timer=setInterval(()=>this.display(),1000);
+    }
+
+    time_convert(hour,min){
+        let wake="";
+        if (hour < 10){
+            wake+="0"+hour;
+        }
+        else{
+            wake+=hour;
+        }
+        if (min<10){
+            wake+=":0"+min;
+        }
+        else{wake+=":"+min}
+
+       return wake===this.wakeupTime;
+    }
+}
+const alarm=new AlarmClock("myClock: ", "14:52");
+alarm.start();
 
 
 /*9*/
