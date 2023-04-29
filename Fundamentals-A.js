@@ -246,7 +246,7 @@ class AlarmClock extends DigitalClock{
     if (secs < 10) secs = '0' + secs;
     console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
     
-    if(this.time_convert(hours,mins) || secs=="09"){
+    if(this.time_convert(hours,mins)){
         this.stop();
     }
     }
@@ -274,17 +274,48 @@ class AlarmClock extends DigitalClock{
     }
 }
 const alarm=new AlarmClock("myClock: ", "14:52");
-alarm.start();
+// alarm.start();
 
 
-/*9*/
+/*9*/ //time out in promise
+function randomDelay(){
+    const myRandom=Math.floor(Math.random()*19)+1;
 
+    return new Promise((resolve,reject)=>{
+        if (myRandom % 2 === 0){
+            setTimeout(resolve,myRandom*1000)
+            resolve(console.log("Is Even. Success",myRandom))
+        }
+        else{
+        reject(console.log("Failed: " + myRandom));}
+    })
+}
+
+randomDelay().then(()=>{console.log("then")}).catch(()=>{console.log("Catch: ")});
 
 
 
 
 /*10*/
+//run 'npm init' and accept all the defaults
+//run 'npm install node-fetch'
+//add this line to package.json after line 5: "type": "module",
 
+/*import fetch from 'node-fetch'
+globalThis.fetch = fetch
+function fetchURLData(url) {
+let fetchPromise = fetch(url).then(response => {
+if (response.status === 200) {
+return response.json();
+} else {
+throw new Error(`Request failed with status ${response.status}`);
+}
+});
+return fetchPromise;
+}
+fetchURLData('https://jsonplaceholder.typicode.com/todos/1')
+.then(data => console.log(data))
+.catch(error => console.error(error.message));*/
 
 
 
